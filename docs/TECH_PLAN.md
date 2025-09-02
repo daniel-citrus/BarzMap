@@ -23,11 +23,11 @@ A web app where people can find and share outdoor gyms and workout parks. Users 
 - **Supabase** - Hosts the database
 - **Cloudflare** - Makes images load fast
 
-## How It Works (Simple Flow)
+## Features
 
 ### 1. User Finds Parks
 ```
-User opens app → Sees map → Clicks area → App shows nearby parks
+User opens app → Sees map → Provide location → App shows nearby parks
 ```
 
 ### 2. User Submits New Park
@@ -40,17 +40,18 @@ User clicks "Add Park" → Fills out form → Uploads photos → Admin reviews �
 Admin logs in → Sees pending submissions → Reviews each one → Approves or rejects
 ```
 
-## Database Tables (What We Store)
+## Database Tables
 
 ### Users
-- User ID, email, name, profile picture
+- User ID (Auth0), email, name, profile picture
 - Role (user, moderator, admin)
-- When they joined
+- Join date
 
 ### Parks
-- Park name, description, location (lat/lng)
+- Park name, description, location
 - Status (pending, approved, rejected)
-- Who submitted it, when
+- Submitted by
+- Submit date
 - Rating
 
 ### Equipment
@@ -113,13 +114,13 @@ Admin logs in → Sees pending submissions → Reviews each one → Approves or 
 ## Getting Started Checklist
 
 ### 1. Set Up Accounts
-- [ ] Create Supabase account
-- [ ] Create Auth0 account
-- [ ] Create Vercel account
-- [ ] Create Render account
+- [X] Create Supabase account
+- [X] Create Auth0 account
+- [X] Create Vercel account
+- [X] Create Render account
 
 ### 2. Build Backend
-- [ ] Set up FastAPI project
+- [X] Set up FastAPI project
 - [ ] Connect to Supabase database
 - [ ] Create basic API endpoints
 - [ ] Add user authentication

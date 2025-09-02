@@ -1,0 +1,21 @@
+# Backend
+__pycache__/
+*.pyc
+venv/
+.venv/
+.env
+.env.*
+*.db
+*.sqlite3
+
+# Editor/OS
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Docker
+*.pid
+*.seed
+*.pid.lock
+docker-compose.override.yml
