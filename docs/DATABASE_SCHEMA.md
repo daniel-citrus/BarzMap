@@ -36,7 +36,7 @@ CREATE TABLE users (
 - `updated_at`: Record last update timestamp
 
 ### 2. Parks Table
-Stores information about outdoor gyms and workout parks.
+Stores information about outdoor gyms and workout parks with integrated approval workflow.
 
 ```sql
 CREATE TABLE parks (
@@ -53,6 +53,9 @@ CREATE TABLE parks (
     status VARCHAR(50) DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected')),
     submitted_by UUID REFERENCES users(id) ON DELETE SET NULL,
     submit_date TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
+    approved_by UUID REFERENCES users(id) ON DELETE SET NULL,
+    approved_at TIMESTAMP WITH TIME ZONE,
+    admin_notes TEXT,
     rating DECIMAL(3, 2) CHECK (rating >= 0 AND rating <= 5),
     review_count INTEGER DEFAULT 0,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
@@ -71,6 +74,9 @@ CREATE TABLE parks (
 - `status`: Approval status (pending, approved, rejected)
 - `submitted_by`: User who submitted the park
 - `submit_date`: When the park was submitted
+- `approved_by`: Admin who approved/rejected the park
+- `approved_at`: When the park was approved/rejected
+- `admin_notes`: Notes from admin review
 - `rating`: Average user rating (0-5)
 - `review_count`: Number of reviews
 - `created_at`, `updated_at`: Timestamps
@@ -172,33 +178,6 @@ CREATE TABLE reviews (
 - `is_approved`: Whether the review is approved
 - `created_at`, `updated_at`: Timestamps
 
-### 7. Submissions Table
-Tracks park submission history and admin actions.
-
-```sql
-CREATE TABLE submissions (
-    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-    park_id UUID REFERENCES parks(id) ON DELETE CASCADE,
-    submitted_by UUID REFERENCES users(id) ON DELETE SET NULL,
-    status VARCHAR(50) NOT NULL DEFAULT 'pending' CHECK (status IN ('pending', 'approved', 'rejected')),
-    admin_notes TEXT,
-    reviewed_by UUID REFERENCES users(id) ON DELETE SET NULL,
-    reviewed_at TIMESTAMP WITH TIME ZONE,
-    submitted_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
-    created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
-);
-```
-
-**Fields:**
-- `id`: Unique identifier for the submission
-- `park_id`: Park being submitted
-- `submitted_by`: User who submitted
-- `status`: Current submission status
-- `admin_notes`: Notes from admin review
-- `reviewed_by`: Admin who reviewed the submission
-- `reviewed_at`: When the submission was reviewed
-- `submitted_at`: When the submission was made
-- `created_at`: Record creation timestamp
 
 ## Indexes
 
@@ -207,11 +186,11 @@ CREATE TABLE submissions (
 CREATE INDEX idx_parks_status ON parks(status);
 CREATE INDEX idx_parks_location ON parks(latitude, longitude);
 CREATE INDEX idx_parks_submitted_by ON parks(submitted_by);
+CREATE INDEX idx_parks_approved_by ON parks(approved_by);
 CREATE INDEX idx_park_equipment_park_id ON park_equipment(park_id);
 CREATE INDEX idx_images_park_id ON images(park_id);
 CREATE INDEX idx_images_approved ON images(is_approved);
 CREATE INDEX idx_reviews_park_id ON reviews(park_id);
-CREATE INDEX idx_submissions_status ON submissions(status);
 CREATE INDEX idx_users_role ON users(role);
 ```
 
@@ -219,27 +198,31 @@ CREATE INDEX idx_users_role ON users(role);
 
 ### Foreign Key Relationships:
 - `parks.submitted_by` → `users.id`
+- `parks.approved_by` → `users.id`
 - `park_equipment.park_id` → `parks.id`
 - `park_equipment.equipment_id` → `equipment.id`
 - `images.park_id` → `parks.id`
 - `images.uploaded_by` → `users.id`
 - `reviews.park_id` → `parks.id`
 - `reviews.user_id` → `users.id`
-- `submissions.park_id` → `parks.id`
-- `submissions.submitted_by` → `users.id`
-- `submissions.reviewed_by` → `users.id`
 
 ## Sample Data
-
-### Equipment Categories:
-- **Strength**: Pull-up bars, Parallel bars, Dip bars, Bench press, Squat rack
-- **Cardio**: Running track, Stair climber, Rowing machine
-- **Flexibility**: Stretching area, Yoga platform
-- **Bodyweight**: Push-up bars, Incline/decline benches
+### Sample Equipment Data:
+```sql
+-- Insert sample equipment types
+INSERT INTO equipment (id, name, description, icon_name) VALUES
+    (gen_random_uuid(), 'Pull-up Bar', 'Horizontal bar for pull-ups and chin-ups', 'pull-up-bar'),
+    (gen_random_uuid(), 'Gymnastics Rings', 'Suspension rings for advanced bodyweight training', 'gymnastics-rings'),
+    (gen_random_uuid(), 'Push-up Bars', 'Elevated handles for push-ups and planks', 'push-up-bars'),
+    (gen_random_uuid(), 'Ab Station', 'Station for abdominal and core exercises', 'ab-station'),
+    (gen_random_uuid(), 'Parallel Bars', 'Parallel bars for dips, L-sits, and handstands', 'parallel-bars'),
+    (gen_random_uuid(), 'Monkey Bars', 'Overhead bars for traversing and pull-ups', 'monkey-bars'),
+    (gen_random_uuid(), 'Running Track', 'Designated path for running and jogging', 'running-track'),
+```
 
 ## Notes
 1. **Geographic Data**: Latitude and longitude are stored as DECIMAL for precision
-2. **Soft Deletes**: Consider implementing soft deletes for parks and users
+2. **Single Table Approach**: Parks table handles both submission and approval workflow
 3. **Image Storage**: Images are stored as URLs (Supabase Storage handles the actual files)
 4. **Audit Trail**: The schema includes timestamps for audit purposes
 5. **Scalability**: Indexes are designed for common query patterns (location-based searches, status filtering)

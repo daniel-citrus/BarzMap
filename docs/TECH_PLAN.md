@@ -37,7 +37,7 @@ User clicks "Add Park" → Fills out form → Uploads photos → Admin reviews �
 
 ### 3. Admin Approves Parks
 ```
-Admin logs in → Sees pending submissions → Reviews each one → Approves or rejects
+Admin logs in → Sees pending parks → Reviews each one → Approves or rejects
 ```
 
 ## Database Tables
@@ -53,6 +53,7 @@ Admin logs in → Sees pending submissions → Reviews each one → Approves or 
 - Submitted by
 - Submit date
 - Rating
+- Admin approval tracking
 
 ### Equipment
 - Equipment types (bars, benches, etc.)
@@ -62,6 +63,32 @@ Admin logs in → Sees pending submissions → Reviews each one → Approves or 
 - Park photos
 - Whether they're approved
 - Whether they're inappropriate
+
+## Start Up Checklist
+
+### 1. Set Up Accounts
+- [X] Create Supabase account
+- [X] Create Auth0 account
+- [X] Create Vercel account
+- [X] Create Render account
+
+### 2. Build Backend
+- [X] Set up FastAPI project
+- [X] Connect to Supabase database
+- [ ] Create basic API endpoints
+- [ ] Add user authentication
+
+### 3. Build Frontend
+- [ ] Set up React project
+- [ ] Add map component
+- [ ] Create park submission form
+- [ ] Add user login
+
+### 4. Connect Everything
+- [ ] Connect frontend to backend
+- [ ] Test user registration
+- [ ] Test park submission
+- [ ] Test admin approval
 
 ## 4-Week Build Plan
 
@@ -78,7 +105,7 @@ Admin logs in → Sees pending submissions → Reviews each one → Approves or 
 
 ### Week 3: Admin Features
 - [ ] Admin login
-- [ ] Review submissions
+- [ ] Review pending parks
 - [ ] Approve/reject parks
 - [ ] Upload images
 
@@ -97,7 +124,7 @@ Admin logs in → Sees pending submissions → Reviews each one → Approves or 
 - [ ] Search for parks by location
 
 ### For Admins
-- [ ] Review new submissions
+- [ ] Review pending parks
 - [ ] Approve or reject parks
 - [ ] Manage user accounts
 - [ ] View statistics
@@ -110,47 +137,3 @@ Admin logs in → Sees pending submissions → Reviews each one → Approves or 
 - **Cloudflare**: Free image delivery
 
 **Total cost: $0/month** for the first 6+ months
-
-## Getting Started Checklist
-
-### 1. Set Up Accounts
-- [X] Create Supabase account
-- [X] Create Auth0 account
-- [X] Create Vercel account
-- [X] Create Render account
-
-### 2. Build Backend
-- [X] Set up FastAPI project
-- [ ] Connect to Supabase database
-- [ ] Create basic API endpoints
-- [ ] Add user authentication
-
-### 3. Build Frontend
-- [ ] Set up React project
-- [ ] Add map component
-- [ ] Create park submission form
-- [ ] Add user login
-
-### 4. Connect Everything
-- [ ] Connect frontend to backend
-- [ ] Test user registration
-- [ ] Test park submission
-- [ ] Test admin approval
-
-## Success Metrics
-- [ ] 100+ parks in first month
-- [ ] 50+ active users
-- [ ] 90% submission approval rate
-- [ ] App loads in under 3 seconds
-
-## Next Steps
-1. Start with Week 1 foundation
-2. Get basic map working
-3. Add user authentication
-4. Build park submission feature
-5. Add admin approval system
-6. Launch and get feedback
-
----
-
-**Goal**: Build a simple, working app that helps people find outdoor gyms. Focus on core features first, add complexity later.
