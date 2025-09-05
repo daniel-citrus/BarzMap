@@ -3,7 +3,6 @@ from supabase import create_client
 from models.requests.equipment import (
     EquipmentCreate,
     EquipmentUpdate,
-    EquipmentDelete,
 )
 import uuid
 import os
@@ -45,5 +44,13 @@ async def create_equipment(payload: EquipmentCreate):
         .insert({"name": name, "description": description, "icon_name": icon_name})
         .execute()
     )
+
+    return response.data
+
+
+async def delete_equipment(id: str | None = None):
+    id = uuid.UUID(id)
+
+    response = supabase.table("equipment").delete().eq("id", id).execute()
 
     return response.data

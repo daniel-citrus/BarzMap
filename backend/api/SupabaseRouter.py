@@ -4,7 +4,6 @@ from fastapi import APIRouter
 from models.requests.equipment import (
     EquipmentCreate,
     EquipmentUpdate,
-    EquipmentDelete,
 )
 
 router = APIRouter()
@@ -16,26 +15,29 @@ router = APIRouter()
 #       delete park
 
 
-@router.get("/read/", tags=["read"])
+@router.get("/read/", tags=["equipment"])
 async def get_equipment(uuid: str | None = None):
     response = await supabase_adapter.get_equipment(uuid)
     return response
 
 
-@router.put("/update/", tags=["update"])
+@router.put("/update/", tags=["equipment"])
 async def update_equipment(payload: EquipmentUpdate):
     response = await supabase_adapter.update_equipment(payload)
     return response
 
 
-#       add equipment
-@router.post("/create", tags=["create"])
+@router.post("/create", tags=["equipment"])
 async def create_equipment(payload: EquipmentCreate):
     response = await supabase_adapter.create_equipment(payload)
     return response
 
 
-#       delete equipment
+@router.delete("/delete", tags=["equipment"])
+async def delete_equipment(uuid: str | None = None):
+    reponse = await supabase_adapter.delete_equipment(uuid)
+    return reponse
+
 
 #   Users
 #       get user (auth id)

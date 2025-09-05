@@ -1,6 +1,4 @@
 from pydantic import BaseModel
-from typing import List
-import uuid
 
 
 class EquipmentCreate(BaseModel):
@@ -13,7 +11,3 @@ class EquipmentUpdate(BaseModel):
     id: str
     name: str
     description: str | None = None
-
-
-class EquipmentDelete(BaseModel):
-    ids: List[uuid.UUID]
