@@ -16,7 +16,7 @@ router = APIRouter()
 #       delete park
 
 
-@router.get("/equipment/", tags=["equipment"])
+@router.get("/read/", tags=["read"])
 async def get_equipment(uuid: str | None = None):
     response = await supabase_adapter.get_equipment(uuid)
     return response
@@ -29,6 +29,12 @@ async def update_equipment(payload: EquipmentUpdate):
 
 
 #       add equipment
+@router.post("/create", tags=["create"])
+async def create_equipment(payload: EquipmentCreate):
+    response = await supabase_adapter.create_equipment(payload)
+    return response
+
+
 #       delete equipment
 
 #   Users

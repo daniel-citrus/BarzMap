@@ -33,3 +33,17 @@ async def update_equipment(payload: EquipmentUpdate):
     )
 
     return response.data
+
+
+async def create_equipment(payload: EquipmentCreate):
+    name = payload.name
+    description = payload.description
+    icon_name = payload.icon_name
+
+    response = (
+        supabase.table("equipment")
+        .insert({"name": name, "description": description, "icon_name": icon_name})
+        .execute()
+    )
+
+    return response.data
