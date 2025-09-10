@@ -4,6 +4,11 @@ from models.requests.equipment import (
     EquipmentCreate,
     EquipmentUpdate,
 )
+
+from models.requests.user import (
+    UserCreate,
+    UserUpdate
+)
 import uuid
 import os
 
@@ -22,11 +27,12 @@ async def get_equipment(id: str | None = None):
 async def update_equipment(payload: EquipmentUpdate):
     id = payload.id
     name = payload.name
+    icon_name = payload.icon_name
     description = payload.description
 
     response = (
         supabase.table("equipment")
-        .update({"name": name, "description": description})
+        .update({"name": name, "description": description, "icon_name": icon_name})
         .eq("id", str(id))
         .execute()
     )
@@ -54,3 +60,5 @@ async def delete_equipment(id: str | None = None):
     response = supabase.table("equipment").delete().eq("id", id).execute()
 
     return response.data
+
+async def create_user(payload)
