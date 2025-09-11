@@ -17,9 +17,6 @@ class UserCreate(BaseModel):
     )
 
 class UserUpdate(BaseModel): 
-    auth0_id: str
+    id: str
     email: str
     name: str
-    role: Role = Field(
-        default=Role.user, description="User role: user, moderator, admin"
-    )
