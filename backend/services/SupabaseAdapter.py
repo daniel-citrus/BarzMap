@@ -1,14 +1,7 @@
 from dotenv import load_dotenv
 from supabase import create_client
-from models.requests.equipment import (
-    EquipmentCreate,
-    EquipmentUpdate,
-)
-
-from models.requests.user import (
-    UserCreate,
-    UserUpdate
-)
+from models.requests.equipment import EquipmentCreate, EquipmentUpdate
+from models.requests.users import UserCreate, UserUpdate
 import uuid
 import os
 
@@ -61,4 +54,23 @@ async def delete_equipment(id: str | None = None):
 
     return response.data
 
-async def create_user(payload)
+
+async def create_user(payload: UserCreate):
+    auth0 = payload.auth0_id
+    email = payload.email
+    name = payload.name
+    role = payload.role
+
+    response = (
+        supabase.table("users")
+        .insert({"auth0_id": auth0, "email": email, "name": name, "role": role})
+        .execute()
+    )
+
+    return response.data
+
+
+async def get_user(uuid: str | None = None):
+    id = uuid.UUID(uuid)
+    response = supabase.table("users").select("*").eq("id", str(id)).execute()
+    return response.data

@@ -1,10 +1,8 @@
 from typing import List, Optional
 import services.SupabaseAdapter as supabase_adapter
 from fastapi import APIRouter
-from models.requests.equipment import (
-    EquipmentCreate,
-    EquipmentUpdate,
-)
+from models.requests.equipment import EquipmentCreate, EquipmentUpdate
+from models.requests.users import UserCreate, UserUpdate
 
 router = APIRouter()
 
@@ -48,4 +46,10 @@ async def delete_equipment(uuid: str | None = None):
 @router.get("/user/", tags=["users"])
 async def get_user(uuid: str | None = None):
     response = await supabase_adapter.get_user(uuid)
+    return response
+
+
+@router.post("/user/create", tags=["users"])
+async def create_user(payload: UserCreate):
+    response = await supabase_adapter.create_user(payload)
     return response

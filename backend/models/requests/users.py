@@ -16,7 +16,7 @@ class UserCreate(BaseModel):
         default=Role.user, description="User role: user, moderator, admin"
     )
 
-class UserUpdate(BaseModel):
+class UserUpdate(BaseModel): 
     auth0_id: str
     email: str
     name: str
