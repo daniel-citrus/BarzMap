@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from typing import Optional
 
 
 class EquipmentCreate(BaseModel):
@@ -11,4 +12,4 @@ class EquipmentUpdate(BaseModel):
     id: str
     name: str
     icon_name: str
-    description: str | None = None
+    description: Optional[str] = None

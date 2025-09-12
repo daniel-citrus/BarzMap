@@ -33,8 +33,6 @@ CREATE TABLE parks (
     approved_by UUID REFERENCES users(id) ON DELETE SET NULL,
     approved_at TIMESTAMP WITH TIME ZONE,
     admin_notes TEXT,
-    rating DECIMAL(3, 2) CHECK (rating >= 0 AND rating <= 5),
-    review_count INTEGER DEFAULT 0,
     created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
     updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
