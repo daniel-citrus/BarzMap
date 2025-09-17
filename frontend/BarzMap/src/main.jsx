@@ -1,10 +1,18 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import './index.css'
-import App from './App.jsx'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
+import { Auth0Provider } from '@auth0/auth0-react';
+import App from './App.jsx';
 
 createRoot(document.getElementById('root')).render(
-  <StrictMode>
-    <App />
-  </StrictMode>,
-)
+    <StrictMode>
+        <Auth0Provider
+            domain='dev-zibrqd6bbmk7gy6m.us.auth0.com'
+            clientId='RBWHWe9F2AjPqxT6yjzopMSXmRR3MiYb'
+            authorizationParams={{
+                redirect_uri: window.location.origin,
+            }}
+        >
+            <App />
+        </Auth0Provider>
+    </StrictMode>
+);

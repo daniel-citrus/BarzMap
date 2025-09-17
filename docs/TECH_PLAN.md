@@ -79,7 +79,7 @@ Admin logs in → Sees pending parks → Reviews each one → Approves or reject
 - [ ] Add user authentication
 
 ### 3. Build Frontend
-- [ ] Set up React project
+- [X] Set up React project
 - [ ] Add user login
 - [ ] Add map component
 - [ ] Create park submission form
@@ -89,6 +89,9 @@ Admin logs in → Sees pending parks → Reviews each one → Approves or reject
 - [ ] Test user registration
 - [ ] Test park submission
 - [ ] Test admin approval
+
+### 5. Post Build Features
+- [ ] React Routers
 
 ## Build Plan
 
@@ -129,7 +132,7 @@ Admin logs in → Sees pending parks → Reviews each one → Approves or reject
 - [ ] Manage user accounts
 - [ ] View statistics
 
-## Cost (Free to Start)
+## Cost
 - **Auth0**: Free for 7,500 users/month
 - **Supabase**: Free for 500MB database
 - **Vercel**: Free hosting
