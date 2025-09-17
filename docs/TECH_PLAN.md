@@ -3,21 +3,21 @@
 ## What We're Building
 A web app where people can find and share outdoor gyms and workout parks. Users can see parks on a map, submit new locations, and admins can approve submissions.
 
-## Tech Stack (What We're Using)
+## Tech Stack
 
-### Frontend (What Users See)
+### Frontend
 - **React** - Makes the website interactive
 - **MapLibre** - Shows the map with parks
 - **Tailwind CSS** - Makes it look good
 - **Vite** - Builds the website fast
 
-### Backend (Server Stuff)
+### Backend
 - **FastAPI** - Handles requests and data
 - **Supabase** - Stores data and images
 - **SQLAlchemy** - Talks to the database
 - **Auth0** - Handles user login
 
-### Where It Lives
+### Hosting
 - **Vercel** - Hosts the website
 - **Render** - Hosts the server
 - **Supabase** - Hosts the database
@@ -75,14 +75,14 @@ Admin logs in → Sees pending parks → Reviews each one → Approves or reject
 ### 2. Build Backend
 - [X] Set up FastAPI project
 - [X] Connect to Supabase database
-- [ ] Create basic API endpoints
+- [X] Create basic API endpoints
 - [ ] Add user authentication
 
 ### 3. Build Frontend
 - [ ] Set up React project
+- [ ] Add user login
 - [ ] Add map component
 - [ ] Create park submission form
-- [ ] Add user login
 
 ### 4. Connect Everything
 - [ ] Connect frontend to backend
@@ -90,26 +90,26 @@ Admin logs in → Sees pending parks → Reviews each one → Approves or reject
 - [ ] Test park submission
 - [ ] Test admin approval
 
-## 4-Week Build Plan
+## Build Plan
 
-### Week 1: Foundation
+### Foundation
 - [ ] Set up project structure
 - [ ] Create database tables
 - [ ] Basic website with map
 - [ ] User login/logout
 
-### Week 2: Core Features
+### Core Features
 - [ ] Show parks on map
 - [ ] Submit new parks
 - [ ] Basic park list
 
-### Week 3: Admin Features
+### Admin Features
 - [ ] Admin login
 - [ ] Review pending parks
 - [ ] Approve/reject parks
 - [ ] Upload images
 
-### Week 4: Polish & Launch
+### Polish & Launch
 - [ ] Make it look good
 - [ ] Test everything
 - [ ] Fix bugs

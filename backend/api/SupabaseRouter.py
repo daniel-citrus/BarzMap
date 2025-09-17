@@ -8,15 +8,10 @@ from models.requests.parks import ParkCreate, ParkUpdate
 
 router = APIRouter()
 
-#   Park
-#       getPark (in radius)?
-#       create park (default pending approval)
-#       update park (update data, approve or deny)
-#       delete park
-
 # ============================================================
 #  Parks
 # ============================================================
+
 
 @router.get("/parks/", tags=["parks"])
 async def get_park(id: str | None = None):
