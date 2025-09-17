@@ -10,6 +10,7 @@ createRoot(document.getElementById('root')).render(
             clientId='RBWHWe9F2AjPqxT6yjzopMSXmRR3MiYb'
             authorizationParams={{
                 redirect_uri: window.location.origin,
+                scope: 'openid profile email',
             }}
         >
             <App />

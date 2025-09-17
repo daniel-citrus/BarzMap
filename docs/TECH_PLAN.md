@@ -16,6 +16,7 @@ A web app where people can find and share outdoor gyms and workout parks. Users 
 - **Supabase** - Stores data and images
 - **SQLAlchemy** - Talks to the database
 - **Auth0** - Handles user login
+- **Python**
 
 ### Hosting
 - **Vercel** - Hosts the website
@@ -76,7 +77,7 @@ Admin logs in → Sees pending parks → Reviews each one → Approves or reject
 - [X] Set up FastAPI project
 - [X] Connect to Supabase database
 - [X] Create basic API endpoints
-- [ ] Add user authentication
+- [ ] Endpoint user authentication
 
 ### 3. Build Frontend
 - [X] Set up React project
@@ -92,6 +93,7 @@ Admin logs in → Sees pending parks → Reviews each one → Approves or reject
 
 ### 5. Post Build Features
 - [ ] React Routers
+- [ ] Role based access controls
 
 ## Build Plan
 
