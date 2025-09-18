@@ -10,7 +10,7 @@ SUPABASE_SECRET_KEY = os.environ.get("SUPABASE_SECRET_KEY")
 supabase = create_client(SUPABASE_URL, SUPABASE_SECRET_KEY)
 
 
-async def create_park(payload: ParkCreate):
+def create_park(payload: ParkCreate):
     name = payload.name
     description = payload.description
     latitude = payload.latitude
@@ -41,7 +41,7 @@ async def create_park(payload: ParkCreate):
     return response.data
 
 
-async def get_park(id: str | None = None):
+def get_park(id: str | None = None):
     if id:
         id = uuid.UUID(id)
         response = supabase.table("parks").select("*").eq("id", str(id)).execute()
@@ -52,7 +52,7 @@ async def get_park(id: str | None = None):
         return response.data
 
 
-async def update_park(payload: ParkUpdate):
+def update_park(payload: ParkUpdate):
     id = payload.id
     name = payload.name
     description = payload.description
@@ -88,7 +88,7 @@ async def update_park(payload: ParkUpdate):
     return response.data
 
 
-async def delete_park(id: str | None = None):
+def delete_park(id: str | None = None):
     id = uuid.UUID(id)
     response = supabase.table("parks").delete().eq("id", str(id)).execute()
     return response.data

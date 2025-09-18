@@ -10,7 +10,7 @@ SUPABASE_SECRET_KEY = os.environ.get("SUPABASE_SECRET_KEY")
 supabase = create_client(SUPABASE_URL, SUPABASE_SECRET_KEY)
 
 
-async def create_equipment(payload: EquipmentCreate):
+def create_equipment(payload: EquipmentCreate):
     name = payload.name
     description = payload.description
     icon_name = payload.icon_name
@@ -24,13 +24,13 @@ async def create_equipment(payload: EquipmentCreate):
     return response.data
 
 
-async def get_equipment(id: str | None = None):
+def get_equipment(id: str | None = None):
     id = uuid.UUID(id)
     response = supabase.table("equipment").select("*").eq("id", str(id)).execute()
     return response.data
 
 
-async def update_equipment(payload: EquipmentUpdate):
+def update_equipment(payload: EquipmentUpdate):
     id = payload.id
     name = payload.name
     icon_name = payload.icon_name
@@ -46,7 +46,7 @@ async def update_equipment(payload: EquipmentUpdate):
     return response.data
 
 
-async def delete_equipment(id: str | None = None):
+def delete_equipment(id: str | None = None):
     id = uuid.UUID(id)
     response = supabase.table("equipment").delete().eq("id", str(id)).execute()
 

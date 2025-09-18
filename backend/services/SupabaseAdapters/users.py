@@ -10,7 +10,7 @@ SUPABASE_SECRET_KEY = os.environ.get("SUPABASE_SECRET_KEY")
 supabase = create_client(SUPABASE_URL, SUPABASE_SECRET_KEY)
 
 
-async def create_user(payload: UserCreate):
+def create_user(payload: UserCreate):
     auth0 = payload.auth0_id
     email = payload.email
     name = payload.name
@@ -25,13 +25,13 @@ async def create_user(payload: UserCreate):
     return response.data
 
 
-async def get_user(id: str | None = None):
+def get_user(id: str | None = None):
     id = uuid.UUID(id)
     response = supabase.table("users").select("*").eq("id", str(id)).execute()
     return response.data
 
 
-async def update_user(payload: UserUpdate):
+def update_user(payload: UserUpdate):
     id = payload.id
     email = payload.email
     name = payload.name
@@ -46,7 +46,7 @@ async def update_user(payload: UserUpdate):
     return response.data
 
 
-async def delete_user(id: str | None = None):
+def delete_user(id: str | None = None):
     id = uuid.UUID(id)
     response = supabase.table("users").delete().eq("id", str(id)).execute()
 

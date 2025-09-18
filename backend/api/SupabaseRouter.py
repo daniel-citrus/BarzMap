@@ -13,27 +13,27 @@ router = APIRouter()
 # ============================================================
 
 
-@router.get("/parks/", tags=["parks"])
-async def get_park(id: str | None = None):
-    response = await supabase_parks_adapter.get_park(id)
+@router.get("/parks/", tags=["Parks"])
+def get_park(id: str | None = None):
+    response = supabase_parks_adapter.get_park(id)
     return response
 
 
-@router.post("/parks/create", tags=["parks"])
-async def create_park(payload: ParkCreate):
-    response = await supabase_parks_adapter.create_park(payload)
+@router.post("/parks/create", tags=["Parks"])
+def create_park(payload: ParkCreate):
+    response = supabase_parks_adapter.create_park(payload)
     return response
 
 
-@router.put("/parks/update", tags=["parks"])
-async def update_park(payload: ParkUpdate):
-    response = await supabase_parks_adapter.update_park(payload)
+@router.put("/parks/update", tags=["Parks"])
+def update_park(payload: ParkUpdate):
+    response = supabase_parks_adapter.update_park(payload)
     return response
 
 
-@router.delete("/parks/delete", tags=["parks"])
-async def delete_park(id: str):
-    response = await supabase_parks_adapter.delete_park(id)
+@router.delete("/parks/delete", tags=["Parks"])
+def delete_park(id: str):
+    response = supabase_parks_adapter.delete_park(id)
     return response
 
 
@@ -42,27 +42,27 @@ async def delete_park(id: str):
 # ============================================================
 
 
-@router.get("/equipment/", tags=["equipment"])
-async def get_equipment(id: str | None = None):
-    response = await supabase_equipment_adapter.get_equipment(id)
+@router.get("/equipment/", tags=["Equipment"])
+def get_equipment(id: str | None = None):
+    response = supabase_equipment_adapter.get_equipment(id)
     return response
 
 
-@router.post("/equipment/create", tags=["equipment"])
-async def create_equipment(payload: EquipmentCreate):
-    response = await supabase_equipment_adapter.create_equipment(payload)
+@router.post("/equipment/create", tags=["Equipment"])
+def create_equipment(payload: EquipmentCreate):
+    response = supabase_equipment_adapter.create_equipment(payload)
     return response
 
 
-@router.put("/equipment/update", tags=["equipment"])
-async def update_equipment(payload: EquipmentUpdate):
-    response = await supabase_equipment_adapter.update_equipment(payload)
+@router.put("/equipment/update", tags=["Equipment"])
+def update_equipment(payload: EquipmentUpdate):
+    response = supabase_equipment_adapter.update_equipment(payload)
     return response
 
 
-@router.delete("/equipment/delete", tags=["equipment"])
-async def delete_equipment(id: str | None = None):
-    response = await supabase_equipment_adapter.delete_equipment(id)
+@router.delete("/equipment/delete", tags=["Equipment"])
+def delete_equipment(id: str | None = None):
+    response = supabase_equipment_adapter.delete_equipment(id)
     return response
 
 
@@ -71,25 +71,25 @@ async def delete_equipment(id: str | None = None):
 # ============================================================
 
 
-@router.get("/user/", tags=["users"])
-async def get_user(id: str | None = None):
-    response = await supabase_user_adapter.get_user(id)
+@router.get("/user/", tags=["Users"])
+def get_user(id: str | None = None):
+    response = supabase_user_adapter.get_user(id)
     return response
 
 
-@router.post("/user/create", tags=["users"])
-async def create_user(payload: UserCreate):
-    response = await supabase_user_adapter.create_user(payload)
+@router.post("/user/create", tags=["Users"])
+def create_user(payload: UserCreate):
+    response = supabase_user_adapter.create_user(payload)
     return response
 
 
-@router.put("/user/update", tags=["users"])
-async def update_user(payload: UserUpdate):
-    response = await supabase_user_adapter.update_user(payload)
+@router.put("/user/update", tags=["Users"])
+def update_user(payload: UserUpdate):
+    response = supabase_user_adapter.update_user(payload)
     return response
 
 
-@router.delete("/user/delete", tags=["users"])
-async def delete_user(id: str):
-    response = await supabase_user_adapter.delete_user(id)
+@router.delete("/user/delete", tags=["Users"])
+def delete_user(id: str):
+    response = supabase_user_adapter.delete_user(id)
     return response
