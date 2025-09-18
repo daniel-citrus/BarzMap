@@ -82,10 +82,12 @@ Admin logs in → Sees pending parks → Reviews each one → Approves or reject
   - [X] Set up project structure and components
   - [X] Configure build and development scripts
 - [ ] Implement user authentication
-  - [ ] Install and configure Auth0 React SDK
-  - [ ] Create login/logout components
-  - [ ] Set up user profile display
+  - [X] Install and configure Auth0 React SDK
+  - [X] Create login/logout components
+  - [X] Set up user profile display
   - [ ] Implement protected routes
+    - [X] Extract Auth0 access token
+    - [ ] Authorization header with payload
 - [ ] Add map component
   - [ ] Install MapLibre GL JS
   - [ ] Create base map component with controls

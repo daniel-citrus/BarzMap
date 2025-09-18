@@ -4,7 +4,7 @@ from models.requests.equipment import EquipmentCreate, EquipmentUpdate
 import uuid
 import os
 
-load_dotenv(".env.backend")
+load_dotenv(".env")
 SUPABASE_URL = os.environ.get("SUPABASE_URL")
 SUPABASE_SECRET_KEY = os.environ.get("SUPABASE_SECRET_KEY")
 supabase = create_client(SUPABASE_URL, SUPABASE_SECRET_KEY)
@@ -25,8 +25,13 @@ def create_equipment(payload: EquipmentCreate):
 
 
 def get_equipment(id: str | None = None):
-    id = uuid.UUID(id)
-    response = supabase.table("equipment").select("*").eq("id", str(id)).execute()
+    response = ""
+
+    if id:
+        id = uuid.UUID(id)
+        response = supabase.table("equipment").select("*").eq("id", str(id)).execute()
+    else:
+        response = supabase.table("equipment").select("*").execute()
     return response.data
 
 

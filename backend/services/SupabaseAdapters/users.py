@@ -4,7 +4,7 @@ from models.requests.users import UserCreate, UserUpdate
 import uuid
 import os
 
-load_dotenv(".env.backend")
+load_dotenv(".env")
 SUPABASE_URL = os.environ.get("SUPABASE_URL")
 SUPABASE_SECRET_KEY = os.environ.get("SUPABASE_SECRET_KEY")
 supabase = create_client(SUPABASE_URL, SUPABASE_SECRET_KEY)

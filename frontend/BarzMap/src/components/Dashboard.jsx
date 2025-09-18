@@ -1,13 +1,12 @@
 import Header from './Header';
-import useAuthentication from '../hooks/useAuthentication';
+import useUserLogin from '../hooks/useUserLogin';
 
 const Dashboard = () => {
-    const { userToken } = useAuthentication();
+    useUserLogin();
 
     return (
         <>
             <Header />
-            {userToken}
         </>
     );
 };

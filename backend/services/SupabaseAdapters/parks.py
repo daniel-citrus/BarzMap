@@ -4,7 +4,7 @@ from models.requests.parks import ParkCreate, ParkUpdate
 import uuid
 import os
 
-load_dotenv(".env.backend")
+load_dotenv(".env")
 SUPABASE_URL = os.environ.get("SUPABASE_URL")
 SUPABASE_SECRET_KEY = os.environ.get("SUPABASE_SECRET_KEY")
 supabase = create_client(SUPABASE_URL, SUPABASE_SECRET_KEY)
@@ -23,18 +23,20 @@ def create_park(payload: ParkCreate):
 
     response = (
         supabase.table("parks")
-        .insert({
-            "name": name,
-            "description": description,
-            "latitude": latitude,
-            "longitude": longitude,
-            "address": address,
-            "city": city,
-            "state": state,
-            "country": country,
-            "postal_code": postal_code,
-            "status": "pending"
-        })
+        .insert(
+            {
+                "name": name,
+                "description": description,
+                "latitude": latitude,
+                "longitude": longitude,
+                "address": address,
+                "city": city,
+                "state": state,
+                "country": country,
+                "postal_code": postal_code,
+                "status": "pending",
+            }
+        )
         .execute()
     )
 
@@ -42,14 +44,14 @@ def create_park(payload: ParkCreate):
 
 
 def get_park(id: str | None = None):
+    response = ""
     if id:
         id = uuid.UUID(id)
         response = supabase.table("parks").select("*").eq("id", str(id)).execute()
-        return response.data
     else:
-        # Get all parks if no ID provided
         response = supabase.table("parks").select("*").execute()
-        return response.data
+
+    return response.data
 
 
 def update_park(payload: ParkUpdate):
@@ -68,19 +70,21 @@ def update_park(payload: ParkUpdate):
 
     response = (
         supabase.table("parks")
-        .update({
-            "name": name,
-            "description": description,
-            "latitude": latitude,
-            "longitude": longitude,
-            "address": address,
-            "city": city,
-            "state": state,
-            "country": country,
-            "postal_code": postal_code,
-            "status": status,
-            "admin_notes": admin_notes
-        })
+        .update(
+            {
+                "name": name,
+                "description": description,
+                "latitude": latitude,
+                "longitude": longitude,
+                "address": address,
+                "city": city,
+                "state": state,
+                "country": country,
+                "postal_code": postal_code,
+                "status": status,
+                "admin_notes": admin_notes,
+            }
+        )
         .eq("id", str(id))
         .execute()
     )
