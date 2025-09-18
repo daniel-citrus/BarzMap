@@ -1,15 +1,7 @@
-import LoginButton from './components/elements/login';
-import LogoutButton from './components/elements/logout';
-import Profile from './components/elements/AuthProfile';
+import Dashboard from './components/Dashboard';
 
 function App() {
-    return (
-        <>
-            <LoginButton />
-            <Profile />
-            <LogoutButton />
-        </>
-    );
+    return <Dashboard />;
 }
 
 export default App;
