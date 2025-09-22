@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 const useUserLogin = () => {
     const { userToken } = useAuthentication();
-    const { isAuthenticated } = useAuth0();
+    const { isAuthenticated, user } = useAuth0();
 
     useEffect(() => {
         async function loginUser() {
@@ -18,12 +18,17 @@ const useUserLogin = () => {
                                 Authorization: `Bearer ${userToken}`,
                                 'Content-Type': 'application/json',
                             },
-                            body: JSON.stringify(),
+                            body: JSON.stringify({
+                                userToken,
+                                firstName: user.given_name,
+                                lastName: user.family_name,
+                                profile_picture_url: user.picture,
+                                email: user.email,
+                            }),
                         }
                     );
 
                     response = await response.json();
-
                     console.log(response);
                 } catch (e) {
                     console.error('Login Issue: ', e);
@@ -32,9 +37,7 @@ const useUserLogin = () => {
         }
 
         loginUser();
-    }, [isAuthenticated, userToken]);
-
-    return <></>;
+    }, [isAuthenticated, userToken, user]);
 };
 
 export default useUserLogin;
